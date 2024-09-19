@@ -1,0 +1,94 @@
+{
+    "Analysis": {
+        "Analysis-GlobalOptions": {
+            "_additional_rules": [
+                "rules"
+            ]
+        },
+        "CodingStyle-Naming.Class": {
+            "_active": true,
+            "naming_convention": "^([A-Z][a-z0-9]*_)?([A-Z][a-z0-9]*)+$"
+        },
+        "CodingStyle-Naming.Function": {
+            "_active": true,
+            "msg": {
+                "non_compliant_name": {
+                    "text": "Function name does not match regular expression, ^([A-Za-z0-9]+_)?([A-Z][a-z0-9]*)+$."
+                }
+            },
+            "naming_convention": "^([A-Za-z0-9]+_)?([A-Z][a-z0-9]*)+$"
+        },
+        "CodingStyle-Naming.Macro": {
+            "_active": true,
+            "msg": {
+                "non_compliant_name": {
+                    "text": "Macro names should match ^(fp.+)|([A-Z][A-Z0-9_]*)$."
+                }
+            },
+            "naming_convention": "^(fp.+)|([A-Z][A-Z0-9_]*)$"
+        },
+        "CodingStyle-Naming.Parameter": {
+            "_active": true,
+            "naming_convention": "^([a-z][a-z0-9]*)([A-Z][a-z0-9]*)*$"
+        },
+        "CodingStyle-Naming.Struct": {
+            "_active": true,
+            "msg": {
+                "non_compliant_name": {
+                    "text": "Names of struct types shall match ^(tag)?([A-Z][a-z0-9]*_)?([A-Z][a-z0-9]*)+$."
+                }
+            },
+            "naming_convention": "^(tag)?([A-Z][a-z0-9]*_)?([A-Z][a-z0-9]*)+$"
+        },
+        "CodingStyle-Naming.Union": {
+            "_active": true,
+            "naming_convention": "^([A-Z][a-z0-9]*_)?([A-Z][a-z0-9]*)+$"
+        },
+        "CodingStyle-NoTabs": {
+            "_active": true
+        },
+        "CodingStyle-WhitesmithBraces": {
+            "_active": true,
+            "control_structure_indentation_mapping": {
+                "$(delta:+)": {
+                    "Do_While_Loop": 4,
+                    "If_Statement": 4,
+                    "Routine_Definition": 0,
+                    "Switch_Case_Label": 4,
+                    "Switch_Statement": 4,
+                    "While_Loop": 4
+                },
+                "$(delta:-)": []
+            }
+        },
+        "CodingStyle-WhitespaceNextToOperator": {
+            "_active": true
+        },
+        "EntryPoints-EntriesByKeyword": {
+            "_active": true,
+            "keywords": [
+                "extern"
+            ]
+        },
+        "FileWide": {
+            "_active": true
+        },
+        "NextRoutine": {
+            "_active": true
+        },
+        "TypeClassifiers": {
+            "_active": true
+        },
+        "VariableNaming": {
+            "_active": true
+        }
+    },
+    "_Format": "1.0",
+    "_Version": "7.5.7",
+    "_VersionNum": [
+        7,
+        5,
+        7,
+        11868
+    ]
+}

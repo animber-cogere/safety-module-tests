@@ -1,0 +1,114 @@
+pipeline {
+    agent {
+        label 'armgcc'
+    }
+    options {
+        disableConcurrentBuilds()
+    }
+    environment {
+        GCC_DIR="D:\\jenkins\\tools\\9_2020-q2-update\\bin"
+        TOOLS_DIR="D:\\jenkins\\tools\\build"
+        MINGW64_DIR="D:\\jenkins\\tools\\msys64\\mingw64\\bin"
+        CPPCHECK_DIR="D:\\jenkins\\tools\\CppCheck27"
+
+        LOCAL_TARGET_BRANCH = defineTargetBranch()
+    }
+    stages {
+        stage('Load settings') {
+            steps {
+                script {
+                    def properties = readProperties file: 'ci.properties'
+                    env.PROJECT_NAME = properties.PROJECT_NAME
+                    env.CHECKER_UUID = properties.CHECKER_UUID
+                    env.COVERAGE_TARGET = properties.COVERAGE_TARGET
+                }
+            }
+        }
+        stage('Checkout') {
+            steps {
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/Driver_Common']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/Driver_Common']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/googletest']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Software/Extern/googletest']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/EN61508_Program_Flow']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibQM/EN61508_Program_Flow']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/EventSystem']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/EventSystem']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/STM32_Safety_STL']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibQM/STM32_Safety_STL']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/RTOS_AL']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/RTOS_AL']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/Parameter_Table']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibQM/Parameter_Table']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/ErrorHandler']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/ErrorHandler']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/embOS']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/embOS']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/DataProcess_Averaging']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/DataProcess_Averaging']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/ErrorLogging']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/ErrorLogging']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/Devices_Temperature_TMP144']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibQM/Devices_Temperature_TMP144']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/Devices_RTC_M41T6X']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/Devices_RTC_M41T6X']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/LibCert/ST_Driver']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/ST_Driver']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/LibQM/ST_Driver']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibQM/ST_Driver']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'build/Devices_ADC_MAX116XX']], gitTool: 'Default', userRemoteConfigs: [[credentialsId: '6737bb64-bede-48ec-ae28-3a9878078798', url: 'http://twkw-build01.twk.local/gerrit/a/TB/Controller/LibCert/Devices_ADC_MAX116XX']])
+            }
+        }
+        stage('Test') {
+            steps {
+                gerritCheck checks: ["${env.CHECKER_UUID}:unittest":'RUNNING']
+                discoverGitReferenceBuild latestBuildIfNotFound: true, targetBranch: "${env.LOCAL_TARGET_BRANCH}"
+                bat """
+                PATH=%PATH%;$GCC_DIR;$TOOLS_DIR;$MINGW64_DIR
+                make unittest
+                """
+                bat """
+                PATH=%PATH%;$GCC_DIR;$TOOLS_DIR;$MINGW64_DIR
+                unittest.exe  --gtest_output=xml:unittest.xml
+                """
+                xunit([GoogleTest(deleteOutputFiles: true, failIfNotNew: true, pattern: 'unittest.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
+            }
+            post {
+                success {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:unittest": 'SUCCESSFUL']
+                }
+                unstable {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:unittest": 'FAILED']
+                }
+                failure {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:unittest": 'FAILED']
+                }
+            }
+        }
+        stage('CodeCoverage') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:codecoverage": 'RUNNING']
+                    discoverGitReferenceBuild latestBuildIfNotFound: true, targetBranch: "${env.LOCAL_TARGET_BRANCH}"
+                    bat """
+                    PATH=%PATH%;$GCC_DIR;$TOOLS_DIR;$MINGW64_DIR
+                    make coverage
+                    """
+                    recordCoverage ignoreParsingErrors: true, enabledForFailure: true,
+                                                tools: [[parser: 'COBERTURA', pattern: '**/coverage.xml']]
+                    }
+            }
+            post {
+                success {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:codecoverage": 'SUCCESSFUL']
+                }
+                unstable {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:codecoverage": 'SUCCESSFUL']
+                }
+                failure {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:codecoverage": 'SUCCESSFUL']
+                }
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                cleanWs()
+            }
+        }
+    }
+}
+
+def defineTargetBranch() {
+    def branchName = "${env.GERRIT_BRANCH}"
+
+    if (branchName == 'null') {
+        branchName = "${env.GIT_BRANCH}"
+    }
+
+    return branchName
+}

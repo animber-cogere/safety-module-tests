@@ -1,0 +1,737 @@
+{
+    "Analysis": {
+        "Analysis-GlobalOptions": {
+            "global_excludes": [
+                "build\\*",
+                "Lib\\Config\\CMSIS\\*",
+                "Lib\\Drv_STM32\\HAL\\STM32*",
+                "Lib\\Drv_STM32\\StdPeriph\\STM32*",
+                "Lib\\RTOS\\*",
+                "LibCert\\embOS\\*",
+                "LibCert\\RTOS_AL\\embOS\\*",
+                "LibCert\\STM32_Safety_STL\\STM32*"
+            ]
+        },
+        "AutosarC++19_03-A5.2.6": {
+            "_active": true,
+            "languages": [
+                "C"
+            ]
+        },
+        "CertC-EXP15": {
+            "_active": true
+        },
+        "CertC-EXP19": {
+            "_active": false
+        },
+        "CertC-EXP45": {
+            "_active": true
+        },
+        "CloneDetection": {
+            "_active": false
+        },
+        "CodingStyle-MisalignedIfEndIf": {
+            "_active": true
+        },
+        "CodingStyle-NoTrailingWhitespace": {
+            "_active": true
+        },
+        "CommentNextConstruct": {
+            "_active": true
+        },
+        "CycleDetection-CallgraphCycles": {
+            "_active": false
+        },
+        "CycleDetection-IncludeCycles": {
+            "_active": false
+        },
+        "DeadCodeDetection": {
+            "_active": true
+        },
+        "FaultDetection-AlternatingInputOutput": {
+            "_active": true
+        },
+        "FaultDetection-BadEnumValue": {
+            "_active": true
+        },
+        "FaultDetection-BufferOverflow": {
+            "_active": true
+        },
+        "FaultDetection-DeadBranches": {
+            "_active": true
+        },
+        "FaultDetection-DeadCatch": {
+            "_active": true
+        },
+        "FaultDetection-DivisionByZero": {
+            "_active": true
+        },
+        "FaultDetection-DoubleFree": {
+            "_active": true
+        },
+        "FaultDetection-EscapingLocalAddress": {
+            "_active": true
+        },
+        "FaultDetection-ExceptionInsideThrow": {
+            "_active": true
+        },
+        "FaultDetection-ExceptionSpecificationViolation": {
+            "_active": true
+        },
+        "FaultDetection-FileModeConflict": {
+            "_active": true
+        },
+        "FaultDetection-ForbiddenOperations": {
+            "_active": true
+        },
+        "FaultDetection-FunctionMarker": {
+            "_active": true
+        },
+        "FaultDetection-IndirectAssignmentOverflow": {
+            "_active": true
+        },
+        "FaultDetection-IntegerOverflow": {
+            "_active": false
+        },
+        "FaultDetection-InvalidArgumentInCall": {
+            "_active": true
+        },
+        "FaultDetection-MemoryLeak": {
+            "_active": true
+        },
+        "FaultDetection-MissingRequiredOperations": {
+            "_active": true
+        },
+        "FaultDetection-NoexceptViolations": {
+            "_active": true
+        },
+        "FaultDetection-NullPointerDereference": {
+            "_active": false
+        },
+        "FaultDetection-OutOfBounds": {
+            "_active": true
+        },
+        "FaultDetection-RemovableStatements": {
+            "_active": true
+        },
+        "FaultDetection-StackFree": {
+            "_active": true
+        },
+        "FaultDetection-TaintAnalysis": {
+            "_active": false
+        },
+        "FaultDetection-UncaughtExceptionEscapingMain": {
+            "_active": true
+        },
+        "FaultDetection-UncaughtExceptionInXtor": {
+            "_active": true
+        },
+        "FaultDetection-UncaughtExceptionOutsideMain": {
+            "_active": true
+        },
+        "FaultDetection-UninitializedVariable": {
+            "_active": true
+        },
+        "FaultDetection-UnrelatedPointerComparison": {
+            "_active": true
+        },
+        "FaultDetection-UnrelatedPointerSubtraction": {
+            "_active": true
+        },
+        "FaultDetection-UnusedAssignments": {
+            "_active": true
+        },
+        "FaultDetection-UseAfterFree": {
+            "_active": true
+        },
+        "FaultDetection-WrongReleaseFunction": {
+            "_active": true
+        },
+        "Generic-DuplicateIncludeGuard": {
+            "_active": true
+        },
+        "Generic-ForbiddenFunctions": {
+            "_active": true,
+            "blacklist": {
+                "$(delta:+)": {
+                    "portable.h": [
+                        "pvPortMalloc",
+                        "vPortFree"
+                    ]
+                },
+                "$(delta:-)": []
+            }
+        },
+        "Generic-MissingIncludeGuard": {
+            "_active": true
+        },
+        "Generic-NoConstCasts": {
+            "_active": true
+        },
+        "Generic-NoMagicNumbers": {
+            "_active": true
+        },
+        "Metric-Lines.Comment": {
+            "_active": true
+        },
+        "Metric-Lines.LOC": {
+            "_active": true
+        },
+        "Metric-McCabeComplexity": {
+            "_active": true
+        },
+        "Metric-NumberOfStatements": {
+            "_active": true
+        },
+        "MisraC++-3.9.2": {
+            "_active": true,
+            "languages": [
+                "C"
+            ]
+        },
+        "MisraC2012-1.1": {
+            "_active": true
+        },
+        "MisraC2012-1.2": {
+            "_active": true
+        },
+        "MisraC2012-1.3": {
+            "_active": true
+        },
+        "MisraC2012-1.4": {
+            "_active": true
+        },
+        "MisraC2012-10.1": {
+            "_active": true
+        },
+        "MisraC2012-10.2": {
+            "_active": true
+        },
+        "MisraC2012-10.3": {
+            "_active": true
+        },
+        "MisraC2012-10.4": {
+            "_active": true
+        },
+        "MisraC2012-10.5": {
+            "_active": true
+        },
+        "MisraC2012-10.6": {
+            "_active": true
+        },
+        "MisraC2012-10.7": {
+            "_active": true
+        },
+        "MisraC2012-10.8": {
+            "_active": true
+        },
+        "MisraC2012-11.1": {
+            "_active": true
+        },
+        "MisraC2012-11.2": {
+            "_active": true
+        },
+        "MisraC2012-11.3": {
+            "_active": true
+        },
+        "MisraC2012-11.4": {
+            "_active": true
+        },
+        "MisraC2012-11.5": {
+            "_active": true
+        },
+        "MisraC2012-11.6": {
+            "_active": true
+        },
+        "MisraC2012-11.7": {
+            "_active": true
+        },
+        "MisraC2012-11.8": {
+            "_active": true
+        },
+        "MisraC2012-11.9": {
+            "_active": true
+        },
+        "MisraC2012-12.1": {
+            "_active": true
+        },
+        "MisraC2012-12.2": {
+            "_active": true
+        },
+        "MisraC2012-12.3": {
+            "_active": true
+        },
+        "MisraC2012-12.4": {
+            "_active": true
+        },
+        "MisraC2012-12.5": {
+            "_active": true
+        },
+        "MisraC2012-13.1": {
+            "_active": true
+        },
+        "MisraC2012-13.2": {
+            "_active": true
+        },
+        "MisraC2012-13.3": {
+            "_active": true
+        },
+        "MisraC2012-13.4": {
+            "_active": true
+        },
+        "MisraC2012-13.5": {
+            "_active": true
+        },
+        "MisraC2012-13.6": {
+            "_active": true
+        },
+        "MisraC2012-14.1": {
+            "_active": true
+        },
+        "MisraC2012-14.2": {
+            "_active": true
+        },
+        "MisraC2012-14.3": {
+            "_active": true
+        },
+        "MisraC2012-14.4": {
+            "_active": true
+        },
+        "MisraC2012-15.1": {
+            "_active": true
+        },
+        "MisraC2012-15.2": {
+            "_active": true
+        },
+        "MisraC2012-15.3": {
+            "_active": true
+        },
+        "MisraC2012-15.4": {
+            "_active": true
+        },
+        "MisraC2012-15.5": {
+            "_active": true
+        },
+        "MisraC2012-15.6": {
+            "_active": true
+        },
+        "MisraC2012-15.7": {
+            "_active": true
+        },
+        "MisraC2012-16.1": {
+            "_active": true
+        },
+        "MisraC2012-16.2": {
+            "_active": true
+        },
+        "MisraC2012-16.3": {
+            "_active": true
+        },
+        "MisraC2012-16.4": {
+            "_active": true
+        },
+        "MisraC2012-16.5": {
+            "_active": true
+        },
+        "MisraC2012-16.6": {
+            "_active": true
+        },
+        "MisraC2012-16.7": {
+            "_active": true
+        },
+        "MisraC2012-17.1": {
+            "_active": true
+        },
+        "MisraC2012-17.2": {
+            "_active": true
+        },
+        "MisraC2012-17.3": {
+            "_active": true
+        },
+        "MisraC2012-17.4": {
+            "_active": true
+        },
+        "MisraC2012-17.5": {
+            "_active": true
+        },
+        "MisraC2012-17.6": {
+            "_active": true
+        },
+        "MisraC2012-17.7": {
+            "_active": true
+        },
+        "MisraC2012-17.8": {
+            "_active": true
+        },
+        "MisraC2012-18.1": {
+            "_active": true
+        },
+        "MisraC2012-18.2": {
+            "_active": true
+        },
+        "MisraC2012-18.3": {
+            "_active": true
+        },
+        "MisraC2012-18.4": {
+            "_active": true
+        },
+        "MisraC2012-18.5": {
+            "_active": true
+        },
+        "MisraC2012-18.6": {
+            "_active": true
+        },
+        "MisraC2012-18.7": {
+            "_active": true
+        },
+        "MisraC2012-18.8": {
+            "_active": true
+        },
+        "MisraC2012-19.1": {
+            "_active": true
+        },
+        "MisraC2012-19.2": {
+            "_active": true
+        },
+        "MisraC2012-2.1": {
+            "_active": true
+        },
+        "MisraC2012-2.2": {
+            "_active": true
+        },
+        "MisraC2012-2.3": {
+            "_active": true
+        },
+        "MisraC2012-2.4": {
+            "_active": true
+        },
+        "MisraC2012-2.5": {
+            "_active": true
+        },
+        "MisraC2012-2.6": {
+            "_active": true
+        },
+        "MisraC2012-2.7": {
+            "_active": true
+        },
+        "MisraC2012-20.1": {
+            "_active": true
+        },
+        "MisraC2012-20.10": {
+            "_active": true
+        },
+        "MisraC2012-20.11": {
+            "_active": true
+        },
+        "MisraC2012-20.12": {
+            "_active": true
+        },
+        "MisraC2012-20.13": {
+            "_active": true
+        },
+        "MisraC2012-20.14": {
+            "_active": true
+        },
+        "MisraC2012-20.2": {
+            "_active": true
+        },
+        "MisraC2012-20.3": {
+            "_active": true
+        },
+        "MisraC2012-20.4": {
+            "_active": true
+        },
+        "MisraC2012-20.5": {
+            "_active": true
+        },
+        "MisraC2012-20.6": {
+            "_active": true
+        },
+        "MisraC2012-20.7": {
+            "_active": true
+        },
+        "MisraC2012-20.8": {
+            "_active": true
+        },
+        "MisraC2012-20.9": {
+            "_active": true
+        },
+        "MisraC2012-21.1": {
+            "_active": true
+        },
+        "MisraC2012-21.10": {
+            "_active": true
+        },
+        "MisraC2012-21.11": {
+            "_active": true
+        },
+        "MisraC2012-21.12": {
+            "_active": true
+        },
+        "MisraC2012-21.13": {
+            "_active": true
+        },
+        "MisraC2012-21.14": {
+            "_active": true
+        },
+        "MisraC2012-21.15": {
+            "_active": true
+        },
+        "MisraC2012-21.16": {
+            "_active": true
+        },
+        "MisraC2012-21.17": {
+            "_active": true
+        },
+        "MisraC2012-21.18": {
+            "_active": true
+        },
+        "MisraC2012-21.19": {
+            "_active": true
+        },
+        "MisraC2012-21.2": {
+            "_active": true
+        },
+        "MisraC2012-21.20": {
+            "_active": true
+        },
+        "MisraC2012-21.21": {
+            "_active": true
+        },
+        "MisraC2012-21.3": {
+            "_active": true
+        },
+        "MisraC2012-21.4": {
+            "_active": true
+        },
+        "MisraC2012-21.5": {
+            "_active": true
+        },
+        "MisraC2012-21.6": {
+            "_active": true
+        },
+        "MisraC2012-21.7": {
+            "_active": true
+        },
+        "MisraC2012-21.8": {
+            "_active": true
+        },
+        "MisraC2012-21.9": {
+            "_active": true
+        },
+        "MisraC2012-22.1": {
+            "_active": true
+        },
+        "MisraC2012-22.10": {
+            "_active": true
+        },
+        "MisraC2012-22.2": {
+            "_active": true
+        },
+        "MisraC2012-22.3": {
+            "_active": true
+        },
+        "MisraC2012-22.4": {
+            "_active": true
+        },
+        "MisraC2012-22.5": {
+            "_active": true
+        },
+        "MisraC2012-22.6": {
+            "_active": true
+        },
+        "MisraC2012-22.7": {
+            "_active": true
+        },
+        "MisraC2012-22.8": {
+            "_active": true
+        },
+        "MisraC2012-22.9": {
+            "_active": true
+        },
+        "MisraC2012-3.1": {
+            "_active": true
+        },
+        "MisraC2012-3.2": {
+            "_active": true
+        },
+        "MisraC2012-4.1": {
+            "_active": true
+        },
+        "MisraC2012-4.2": {
+            "_active": true
+        },
+        "MisraC2012-5.1": {
+            "_active": true
+        },
+        "MisraC2012-5.2": {
+            "_active": true
+        },
+        "MisraC2012-5.3": {
+            "_active": true
+        },
+        "MisraC2012-5.4": {
+            "_active": true
+        },
+        "MisraC2012-5.5": {
+            "_active": true
+        },
+        "MisraC2012-5.6": {
+            "_active": true
+        },
+        "MisraC2012-5.7": {
+            "_active": true
+        },
+        "MisraC2012-5.8": {
+            "_active": true
+        },
+        "MisraC2012-5.9": {
+            "_active": true
+        },
+        "MisraC2012-6.1": {
+            "_active": true
+        },
+        "MisraC2012-6.2": {
+            "_active": true
+        },
+        "MisraC2012-7.1": {
+            "_active": true
+        },
+        "MisraC2012-7.2": {
+            "_active": true
+        },
+        "MisraC2012-7.3": {
+            "_active": true
+        },
+        "MisraC2012-7.4": {
+            "_active": true
+        },
+        "MisraC2012-8.1": {
+            "_active": true
+        },
+        "MisraC2012-8.10": {
+            "_active": true
+        },
+        "MisraC2012-8.11": {
+            "_active": true
+        },
+        "MisraC2012-8.12": {
+            "_active": true
+        },
+        "MisraC2012-8.13": {
+            "_active": true
+        },
+        "MisraC2012-8.14": {
+            "_active": true
+        },
+        "MisraC2012-8.2": {
+            "_active": true
+        },
+        "MisraC2012-8.3": {
+            "_active": true
+        },
+        "MisraC2012-8.4": {
+            "_active": true
+        },
+        "MisraC2012-8.5": {
+            "_active": true
+        },
+        "MisraC2012-8.6": {
+            "_active": true
+        },
+        "MisraC2012-8.7": {
+            "_active": true
+        },
+        "MisraC2012-8.8": {
+            "_active": true
+        },
+        "MisraC2012-8.9": {
+            "_active": true
+        },
+        "MisraC2012-9.1": {
+            "_active": true
+        },
+        "MisraC2012-9.2": {
+            "_active": true
+        },
+        "MisraC2012-9.3": {
+            "_active": true
+        },
+        "MisraC2012-9.4": {
+            "_active": true
+        },
+        "MisraC2012-9.5": {
+            "_active": true
+        },
+        "MisraC2012Directive-1.1": {
+            "_active": true,
+            "msg": {
+                "nonbasic_char_in_comment": {
+                    "disabled": true
+                }
+            }
+        },
+        "MisraC2012Directive-2.1": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.1": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.10": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.11": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.12": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.13": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.14": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.2": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.3": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.4": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.5": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.6": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.7": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.8": {
+            "_active": true
+        },
+        "MisraC2012Directive-4.9": {
+            "_active": true
+        },
+        "NextLine": {
+            "_active": true
+        },
+        "NextRoutine": {
+            "_active": true
+        },
+        "StaticSemanticAnalysis": {
+            "_active": true
+        }
+    },
+    "_Format": "1.0",
+    "_Version": "7.5.7",
+    "_VersionNum": [
+        7,
+        5,
+        7,
+        11868
+    ]
+}

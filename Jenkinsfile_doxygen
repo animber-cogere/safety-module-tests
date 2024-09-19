@@ -1,0 +1,69 @@
+pipeline {
+    agent {
+        label 'armgcc'
+    }
+    options {
+        disableConcurrentBuilds()
+    }
+    environment {
+        GCC_DIR="D:\\jenkins\\tools\\9_2020-q2-update\\bin"
+        TOOLS_DIR="D:\\jenkins\\tools\\build"
+        MINGW64_DIR="D:\\jenkins\\tools\\msys64\\mingw64\\bin"
+        CPPCHECK_DIR="D:\\jenkins\\tools\\CppCheck27"
+        DOXYGEN_DIR="D:\\jenkins\\tools\\doxygen"
+        LOCAL_TARGET_BRANCH = defineTargetBranch()
+    }
+    stages {
+        stage('Load settings') {
+            steps {
+                script {
+                    def properties = readProperties file: 'ci.properties'
+                    env.PROJECT_NAME = properties.PROJECT_NAME
+                    env.CHECKER_UUID = properties.CHECKER_UUID
+                }
+            }
+        }
+        stage('Doxygen') {
+            steps {
+                gerritCheck checks: ["${env.CHECKER_UUID}:doxygen": 'RUNNING']
+                bat """
+                PATH=%PATH%;$GCC_DIR;$TOOLS_DIR;$MINGW64_DIR;$CPPCHECK_DIR;$DOXYGEN_DIR
+                doxygen.cmd doc/LibCert_Module.doxyfile
+                """
+                bat """
+                doc/latex/make.bat
+                """
+                bat """
+                copy doc\\latex\\refman.pdf doc\\latex\\%PROJECT_NAME%.pdf
+                """
+                discoverGitReferenceBuild latestBuildIfNotFound: true, targetBranch: "${env.LOCAL_TARGET_BRANCH}"
+                recordIssues healthy: 10, qualityGates: [[threshold: 1, type: 'NEW', unstable: true]], tools: [doxygen(pattern: '**/doxygen_error.log')]
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'doc/html', reportFiles: 'index.html', reportName: 'Doxygen Dokumentation', reportTitles: ''])
+                archiveArtifacts artifacts: "doc/latex/${env.PROJECT_NAME}.pdf", fingerprint: true, followSymlinks: false, onlyIfSuccessful: true
+            }
+            post {
+                success {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:doxygen": 'SUCCESSFUL']
+                }
+                unstable {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:doxygen": 'FAILED']
+                }
+                failure {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:doxygen": 'FAILED']
+                }
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                cleanWs()
+            }
+        }
+    }
+}
+def defineTargetBranch() {
+    def branchName = "${env.GERRIT_BRANCH}"
+    if (branchName == 'null') {
+        branchName = "${env.GIT_BRANCH}"
+    }
+    return branchName
+}

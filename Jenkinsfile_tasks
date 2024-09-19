@@ -1,0 +1,61 @@
+pipeline {
+    agent {
+        label 'armgcc'
+    }
+    options {
+        disableConcurrentBuilds()
+    }
+    environment {
+        GCC_DIR="D:\\jenkins\\tools\\9_2020-q2-update\\bin"
+        TOOLS_DIR="D:\\jenkins\\tools\\build"
+        MINGW64_DIR="D:\\jenkins\\tools\\msys64\\mingw64\\bin"
+        CPPCHECK_DIR="D:\\jenkins\\tools\\CppCheck27"
+        DOXYGEN_DIR="D:\\jenkins\\tools\\doxygen"
+        LOCAL_TARGET_BRANCH = defineTargetBranch()
+    }
+    stages {
+        stage('Load settings') {
+            steps {
+                script {
+                    def properties = readProperties file: 'ci.properties'
+                    env.PROJECT_NAME = properties.PROJECT_NAME
+                    env.CHECKER_UUID = properties.CHECKER_UUID
+                }
+            }
+        }
+        stage('OpenTasks') {
+            steps {
+                gerritCheck checks: ["${env.CHECKER_UUID}:opentasks": 'RUNNING']
+                bat """
+                PATH=%PATH%;$GCC_DIR;$TOOLS_DIR;$MINGW64_DIR;$CPPCHECK_DIR;$DOXYGEN_DIR
+                """
+                discoverGitReferenceBuild latestBuildIfNotFound: true, targetBranch: "${env.LOCAL_TARGET_BRANCH}"
+                gitDiffStat()
+                recordIssues qualityGates: [[threshold: 1, type: 'NEW', unstable: true]], tools: [taskScanner(highTags: 'FIXME,XXX', ignoreCase: true, includePattern: '**/*.c,**/*.cpp,**/*.h,**/*.hpp,**/*.vb',excludePattern: 'build/**', normalTags: 'TODO')]
+            }
+            post {
+                success {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:opentasks": 'SUCCESSFUL']
+                }
+                unstable {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:opentasks": 'FAILED']
+                }
+                failure {
+                    gerritCheck checks: ["${env.CHECKER_UUID}:opentasks": 'FAILED']
+                }
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                cleanWs()
+            }
+        }
+    }
+}
+def defineTargetBranch() {
+    def branchName = "${env.GERRIT_BRANCH}"
+    if (branchName == 'null') {
+        branchName = "${env.GIT_BRANCH}"
+    }
+    return branchName
+}

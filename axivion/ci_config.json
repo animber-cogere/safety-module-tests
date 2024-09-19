@@ -1,0 +1,49 @@
+{
+    "Project": {
+        "Git": {
+            "_active": true,
+            "sourceserver_gitdir": "C:\\axivion\\gitsource\\$(PROJECT_NAME).git"
+        },
+        "MakeIntegration": {
+            "_active": true,
+            "build_target": "axivion_analysis.ir",
+            "options": "CC=cafeCC CXX=cafeCC OBJDUMP=echo SIZE=echo OBJCOPY=irOBJCOPY"
+        },
+        "Project-GlobalOptions": {
+            "directory": "../",
+            "ir": "axivion_analysis.ir",
+            "name": "LibCert.$(PROJECT_NAME).$(AXIVION_TARGET_BRANCH)"
+        }
+    },
+    "Results": {
+        "Dashboard": {
+            "dashboard_url": "http://twkw-build01.twk.local:9090/axivion/"
+        },
+        "Database": {
+            "ci_mode": {
+                "directory": "\\\\twkw-build01\\results"
+            },
+            "import_suppressed_issues": true
+        },
+        "JSONReport": {
+            "_active": false,
+            "filename": "axivion_report.json"
+        },
+        "JUnitXMLReport": {
+            "_active": true,
+            "filename": "axivion_report_junit.xml"
+        },
+        "SARIFReport": {
+            "_active": false,
+            "filename": "axivion_report.sarif"
+        }
+    },
+    "_Format": "1.0",
+    "_Version": "7.5.4",
+    "_VersionNum": [
+        7,
+        5,
+        4,
+        11685
+    ]
+}
